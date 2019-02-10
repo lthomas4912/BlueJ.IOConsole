@@ -35,12 +35,12 @@ public class GetLongInputTest {
         test("-9223372036854775808", Long.MIN_VALUE);
     }
 
-    @Test(expected=NoSuchElementException.class)
+    @Test
     public void test6() {
         test("1.1", 1L);
     }
 
-    @Test(expected=NoSuchElementException.class)
+    @Test
     public void test7() {
         test("_", null);
     }
@@ -48,13 +48,15 @@ public class GetLongInputTest {
 
     private void test(String input, Long expected) {
         // Given
+        Long expected1 = expected;
+       
         this.console = getConsoleWithBufferedInput(input);
 
         // When
-        Long actual = console.getLongInput("");
+        Long actual = console.getLongInput(expected);
 
         // Then
-        Assert.assertEquals(actual, expected);
+        Assert.assertEquals(actual, expected1);
     }
 
     private IOConsole getConsoleWithBufferedInput(String inputString) {

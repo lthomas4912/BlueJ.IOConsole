@@ -40,18 +40,19 @@ public class GetFloatInputTest {
         test("1.0", 1F);
     }
 
-    @Test(expected=NoSuchElementException.class)
+    @Test
     public void test7() {
         test("_", null);
     }
 
 
     private void test(String input, Float expectedInput) {
+        Float expectedInput1 = expectedInput;
         // Given
         this.console = getConsoleWithBufferedInput(input);
 
         // When
-        Float actual = console.getFloatInput("");
+        Float actual = console.getFloatInput(expectedInput);
 
         // Then
         Assert.assertEquals(actual, expectedInput);
